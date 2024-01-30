@@ -12,12 +12,14 @@ export class LabelComponent implements OnInit, OnDestroy {
   myInterval: any;
 
   ngOnInit() {
-    this.myInterval = setInterval(() => {
+    this.myInterval = setTimeout(() => {
       this.labelClass = this.labelClass === 'red' ? 'green' : 'red'
     }, 5000);
   }
 
  ngOnDestroy() {
-   clearInterval(this.myInterval);
+  // clearInterval(this.myInterval);
  }
+
+  protected readonly setTimeout = setTimeout;
 }
