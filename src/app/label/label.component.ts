@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-label',
@@ -7,14 +7,17 @@ import {Component, OnInit} from '@angular/core';
   templateUrl: './label.component.html',
   styleUrl: './label.component.css'
 })
-export class LabelComponent implements OnInit {
+export class LabelComponent implements OnInit, OnDestroy {
   labelClass = 'red';
-
+  myInterval: any;
 
   ngOnInit() {
-    setInterval(() => {
+    this.myInterval = setInterval(() => {
       this.labelClass = this.labelClass === 'red' ? 'green' : 'red'
     }, 5000);
   }
 
+ ngOnDestroy() {
+   clearInterval(this.myInterval);
+ }
 }
